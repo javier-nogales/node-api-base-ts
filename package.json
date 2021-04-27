@@ -1,0 +1,43 @@
+{
+  "name": "node-api-base-ts",
+  "version": "0.0.1",
+  "description": "Node API base in TypeScript",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"./src/**/*.{ts,js}\"",
+    "lint": "eslint . --ext .ts",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javier-nogales/node-api-base-ts.git"
+  },
+  "keywords": ["node", "api", "rest", "typescript"],
+  "author": "Javier Nogales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javier-nogales/node-api-base-ts/issues"
+  },
+  "homepage": "https://github.com/javier-nogales/node-api-base-ts#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.2.4"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
