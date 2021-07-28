@@ -19,7 +19,12 @@
     "type": "git",
     "url": "git+https://github.com/javier-nogales/node-api-base-ts.git"
   },
-  "keywords": ["node", "api", "rest", "typescript"],
+  "keywords": [
+    "node",
+    "api",
+    "rest",
+    "typescript"
+  ],
   "author": "Javier Nogales",
   "license": "ISC",
   "bugs": {
@@ -39,5 +44,10 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1",
+    "typescript-simple": "^8.0.6"
+  }
 }
