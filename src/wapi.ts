@@ -1,12 +1,15 @@
 import express from 'express';
 
-module wapi {
+const default_port :number = 3000;
+
+
 
     export interface Application {
-        readonly app: express.Application;
-        readonly port: number;
+        readonly app :express.Application;
+        readonly port :number;
 
-        addRouters():void;
+        addRouters() :void;
+        start() :void;
     }
 
     export function createFor(app: express.Application) {
@@ -15,11 +18,11 @@ module wapi {
 
     class ApiBase implements Application {
 
-        app:express.Application;
-        port:number = 3000;
-        startCallback?: Function;
+        app :express.Application;
+        port :number = default_port;
+        startCallback? :Function;
 
-        constructor(app:express.Application) {
+        constructor(app :express.Application) {
             this.app = app;
         }
 
@@ -79,7 +82,3 @@ module wapi {
         }
 
     }
-
-}
-
-export default wapi;
