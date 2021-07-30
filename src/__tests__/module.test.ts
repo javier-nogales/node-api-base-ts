@@ -47,14 +47,31 @@ describe ('wapi check methods', () => {
     });
 });
 
+describe ('wapi properties should be readonly', () => {
+    const api: wapi.Application = wapi.createFor(express())
+                                        .withDefaultPort()
+                                        .asJSONRest()
+                                        .build();
+    it('app shold be read-only', () => {
+        expect(isWritable(api, 'app')).toBe(false);        
+    });
+    it('port should be read-only', () => {
+        expect(isWritable(api, 'port')).toBe(false);
+    });
+});
+
+function isWritable<T extends Object>(obj :T, key :keyof T) :boolean {
+    // Beware!! The object property should be private and the access way by getter,
+    //          otherwise allway returns true;
+    const desc = Object.getOwnPropertyDescriptor(obj, key) || {};
+    return Boolean(desc.writable);
+}
 function isInstanceOfWapiApplication(object :any) :object is wapi.Application {
     return "app" in object &&
            "port" in object &&
            "addRouters" in object &&
            "start" in object;
 }
-
-
 function isInstanceOfExpressApplication(object :any) :object is express.Application {
     return "request" in object && 
            "response" in object &&

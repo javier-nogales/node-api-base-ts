@@ -18,12 +18,15 @@ const default_port :number = 3000;
 
     class ApiBase implements Application {
 
-        app :express.Application;
-        port :number = default_port;
+        _app :express.Application;
+        _port :number = default_port;
         startCallback? :Function;
 
+        get app() {return this._app};
+        get port() {return this._port};
+
         constructor(app :express.Application) {
-            this.app = app;
+            this._app = app;
         }
 
         addRouters():void {
@@ -32,9 +35,9 @@ const default_port :number = 3000;
 
         start() {
             if(this.startCallback)
-                this.app.listen(this.port, this.startCallback());
+                this._app.listen(this._port, this.startCallback());
             else
-                this.app.listen(this.port);
+                this._app.listen(this._port);
         }
 
     }
@@ -50,7 +53,7 @@ const default_port :number = 3000;
         }
         
         public withPort(port:number): BuilderJSONRestStep {
-            this.api.port = port;
+            this.api._port = port;
             return new BuilderJSONRestStep(this.api);
         }
 
