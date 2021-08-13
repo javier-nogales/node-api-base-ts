@@ -60,6 +60,18 @@ describe ('wapi properties should be readonly', () => {
     });
 });
 
+// describe('Routers', () => {
+//     it('api has method to add routers', () => {
+//         const api: wapi.Application = wapi.createFor(express())
+//                                         .withDefaultPort()
+//                                         .asJSONRest()
+//                                         .build();
+//         const routers :wapi.Router[] = [];
+//         api.addRouters(routers);
+        
+//     });
+// });
+
 function isWritable<T extends Object>(obj :T, key :keyof T) :boolean {
     // Beware!! The object property should be private and the access way by getter,
     //          otherwise allway returns true;
